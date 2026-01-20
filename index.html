@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'">
+  <title>TidyUp</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🗂️ TidyUp</h1>
+      <p class="tagline">AI-powered file organizer. Your files never leave your machine.</p>
+    </header>
+
+    <!-- API Key Setup -->
+    <div id="api-setup" class="card hidden">
+      <h2>🔑 Setup</h2>
+      <p>Enter your OpenAI API key to enable AI-powered organization.</p>
+      <p class="note">Your key is stored locally and only used to communicate with OpenAI.</p>
+      <div class="input-group">
+        <input type="password" id="api-key-input" placeholder="sk-..." />
+        <button id="save-key-btn">Save Key</button>
+      </div>
+      <p class="help-text">
+        Get your API key at <a href="#" onclick="require('electron').shell.openExternal('https://platform.openai.com/api-keys')">platform.openai.com/api-keys</a>
+      </p>
+    </div>
+
+    <!-- Drop Zone -->
+    <div id="drop-zone" class="card">
+      <div class="drop-area" id="drop-area">
+        <div class="drop-icon">📁</div>
+        <p>Drop a folder here</p>
+        <p class="small">or click to select</p>
+      </div>
+    </div>
+
+    <!-- Scanning Status -->
+    <div id="scanning" class="card hidden">
+      <div class="spinner"></div>
+      <p>Scanning files...</p>
+    </div>
+
+    <!-- Analysis Results -->
+    <div id="results" class="card hidden">
+      <div class="results-header">
+        <h2>📋 Organization Plan</h2>
+        <p id="folder-path" class="folder-path"></p>
+      </div>
+      
+      <div class="file-list" id="file-list">
+        <!-- Files will be inserted here -->
+      </div>
+
+      <div class="actions">
+        <label class="select-all">
+          <input type="checkbox" id="select-all" checked />
+          Select All
+        </label>
+        <div class="buttons">
+          <button id="undo-btn" class="secondary" disabled>↩️ Undo</button>
+          <button id="organize-btn" class="primary">✨ Organize Files</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Success Message -->
+    <div id="success" class="card hidden">
+      <div class="success-icon">✅</div>
+      <h2>Files Organized!</h2>
+      <p id="success-message"></p>
+      <button id="organize-more-btn" class="primary">Organize More</button>
+    </div>
+
+    <!-- Error Message -->
+    <div id="error" class="card hidden">
+      <div class="error-icon">❌</div>
+      <h2>Oops!</h2>
+      <p id="error-message"></p>
+      <button id="try-again-btn" class="primary">Try Again</button>
+    </div>
+
+    <footer>
+      <p>Built by <a href="https://twitter.com/sleepolym" target="_blank">@sleepolym</a> · <a href="https://github.com/sleepolym/tidyup" target="_blank">Open Source</a></p>
+      <p class="sleepy">could change the world. need a nap first. 💤</p>
+    </footer>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>
