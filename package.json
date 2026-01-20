@@ -28,13 +28,13 @@
     },
     "mac": {
       "category": "public.app-category.utilities",
-      "icon": "assets/icon.icns"
+      "target": ["dmg"]
     },
     "win": {
-      "icon": "assets/icon.ico"
+      "target": ["nsis"]
     },
     "linux": {
-      "icon": "assets/icon.png",
+      "target": ["AppImage"],
       "category": "Utility"
     }
   }
