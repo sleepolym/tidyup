@@ -156,8 +156,12 @@ Respond ONLY with valid JSON array, no other text.`;
       max_tokens: 2000
     });
     
-    const content = response.choices[0].message.content;
-    // Extract JSON from response (handle markdown code blocks)
+    let content = response.choices[0].message.content;
+    
+    // Strip markdown code fences if present
+    content = content.replace(/```json\s*/gi, '').replace(/```\s*/g, '').trim();
+    
+    // Extract JSON array from response
     const jsonMatch = content.match(/\[[\s\S]*\]/);
     if (jsonMatch) {
       return JSON.parse(jsonMatch[0]);
